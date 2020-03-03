@@ -1,7 +1,8 @@
-package wst.CRUDExecutors;
+package wst.CRUDExecutors.Soap;
 
 import javafx.util.Pair;
 import org.springframework.stereotype.Service;
+import wst.CRUDExecutors.CRUDPersonExecutor;
 import wst.DBClient;
 import wst.generated.FindFault_Exception;
 import wst.generated.Person;
@@ -9,10 +10,10 @@ import wst.generated.Person;
 import java.util.List;
 
 @Service
-public class FindExecutor implements CRUDPersonExecutor {
+public class SoapFindExecutor implements CRUDPersonExecutor {
     private final DBClient dbClient;
 
-    public FindExecutor(DBClient dbClient) {
+    public SoapFindExecutor(DBClient dbClient) {
         this.dbClient = dbClient;
     }
 

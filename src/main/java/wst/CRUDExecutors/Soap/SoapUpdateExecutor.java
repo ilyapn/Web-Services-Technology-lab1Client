@@ -1,15 +1,16 @@
-package wst.CRUDExecutors;
+package wst.CRUDExecutors.Soap;
 
 import org.springframework.stereotype.Service;
+import wst.CRUDExecutors.CRUDPersonExecutor;
 import wst.DBClient;
 import wst.generated.Person;
 import wst.generated.UpdateFault;
 
 @Service
-public class UpdateExecutor implements CRUDPersonExecutor {
+public class SoapUpdateExecutor implements CRUDPersonExecutor {
     private final DBClient dbClient;
 
-    public UpdateExecutor(DBClient dbClient) {
+    public SoapUpdateExecutor(DBClient dbClient) {
         this.dbClient = dbClient;
     }
 

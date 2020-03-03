@@ -1,15 +1,16 @@
-package wst.CRUDExecutors;
+package wst.CRUDExecutors.Soap;
 
 import org.springframework.stereotype.Service;
+import wst.CRUDExecutors.CRUDPersonExecutor;
 import wst.DBClient;
 import wst.generated.DeleteFault;
 import wst.generated.Person;
 
 @Service
-public class DeleteExecutor implements CRUDPersonExecutor {
+public class SoapDeleteExecutor implements CRUDPersonExecutor {
     private final DBClient dbClient;
 
-    public DeleteExecutor(DBClient dbClient) {
+    public SoapDeleteExecutor(DBClient dbClient) {
         this.dbClient = dbClient;
     }
 
