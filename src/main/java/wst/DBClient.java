@@ -2,15 +2,14 @@ package wst;
 
 import javafx.util.Pair;
 import org.springframework.stereotype.Service;
-import sun.corba.OutputStreamFactory;
 import wst.generated.*;
 
 import javax.xml.ws.Holder;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.attribute.DosFileAttributes;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 @Service
 public class DBClient {
@@ -44,6 +43,19 @@ public class DBClient {
         File file = new File("src/main/resources/image.jpg");
         OutputStream fileInputStream = new FileOutputStream(file);
         fileInputStream.write(img);
+
+    }
+    public Future<Object> imageAsinc(){
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<Object> submit = executorService.submit(() -> {
+            try {
+                image();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "null";
+        });
+        return submit;
     }
 
 

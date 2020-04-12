@@ -7,6 +7,7 @@ import wst.generated.ObjectFactory;
 import wst.generated.Person;
 
 import java.io.IOException;
+import java.util.concurrent.Future;
 
 public class DBProvider {
     private final CRUDPersonExecutor findExecutor;
@@ -43,12 +44,22 @@ public class DBProvider {
             case "img":
                 img();
                 break;
+            case "imgAsinc":
+                imgAsinc();
+                break;
             default:
                 System.out.println("No such operation");
         }
     }
 
-    private void img()  {
+    private void imgAsinc() {
+        Future<Object> objectFuture = soapImageExecutor.executeAsinc();
+        while (!objectFuture.isDone())
+            System.out.println("waiting");
+
+    }
+
+    private void img() {
         try {
             soapImageExecutor.execute();
         } catch (IOException e) {
