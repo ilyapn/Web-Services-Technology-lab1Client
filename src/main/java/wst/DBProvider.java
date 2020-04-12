@@ -2,23 +2,28 @@ package wst;
 
 import org.apache.commons.cli.CommandLine;
 import wst.CRUDExecutors.CRUDPersonExecutor;
+import wst.CRUDExecutors.Soap.SoapImageExecutor;
 import wst.generated.ObjectFactory;
 import wst.generated.Person;
+
+import java.io.IOException;
 
 public class DBProvider {
     private final CRUDPersonExecutor findExecutor;
     private final CRUDPersonExecutor insertExecutor;
     private final CRUDPersonExecutor updateExecutor;
     private final CRUDPersonExecutor deleteExecutor;
+    private final SoapImageExecutor soapImageExecutor;
 
     public DBProvider(CRUDPersonExecutor findExecutor,
                       CRUDPersonExecutor insertExecutor,
                       CRUDPersonExecutor updateExecutor,
-                      CRUDPersonExecutor deleteExecutor) {
+                      CRUDPersonExecutor deleteExecutor, SoapImageExecutor soapImageExecutor) {
         this.findExecutor = findExecutor;
         this.insertExecutor = insertExecutor;
         this.updateExecutor = updateExecutor;
         this.deleteExecutor = deleteExecutor;
+        this.soapImageExecutor = soapImageExecutor;
     }
 
     void handl(Person person, CommandLine parse) {
@@ -35,8 +40,19 @@ public class DBProvider {
             case "delete":
                 delete(person, parse);
                 break;
+            case "img":
+                img();
+                break;
             default:
                 System.out.println("No such operation");
+        }
+    }
+
+    private void img()  {
+        try {
+            soapImageExecutor.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

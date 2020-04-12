@@ -12,6 +12,6 @@ public class DBProviderRest extends DBProvider {
                           RestInsertExecutor insertExecutor,
                           RestUpdateExecutor updateExecutor,
                           RestDeleteExecutor deleteExecutor) {
-        super(findExecutor, insertExecutor, updateExecutor, deleteExecutor);
+        super(findExecutor, insertExecutor, updateExecutor, deleteExecutor,null);
     }
 }
