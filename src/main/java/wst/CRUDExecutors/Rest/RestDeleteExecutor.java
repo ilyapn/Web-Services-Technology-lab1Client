@@ -17,6 +17,7 @@ public class RestDeleteExecutor implements CRUDPersonExecutor {
     @Override
     public void execute(Person person) {
         HttpHeaders headers = new HttpHeaders();
+        headers.setBasicAuth("1","1");
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         RestTemplate restTemplate = new RestTemplate();
 

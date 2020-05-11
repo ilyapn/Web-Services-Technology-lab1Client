@@ -1,9 +1,6 @@
 package wst.CRUDExecutors.Rest;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -35,9 +32,8 @@ public class RestFindExecutor implements CRUDPersonExecutor {
         if (person.getAge() != null)
             map.add("weight", person.getWeight().getValue().toString());
         try {
-            ResponseEntity<List> response = restTemplate.postForEntity("http://localhost:7070/db/find",
-                    request,
-                    List.class);
+            ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:7070/db/find",
+                    List.class,request);
             response.getBody().forEach(s -> System.out.println(s.toString()));
         } catch (Exception e){
             e.printStackTrace();
